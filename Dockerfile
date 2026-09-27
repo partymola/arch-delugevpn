@@ -32,6 +32,9 @@ ADD config/nobody/ /home/nobody/
 # install app
 #############
 
+# override the base image's pia_generate_token (see build/root/pia-token.sh)
+RUN cat /root/pia-token.sh >> /usr/local/bin/tools.sh
+
 # make executable and run bash scripts to install app
 RUN chmod +x /root/*.sh /home/nobody/*.sh /home/nobody/*.py && \
 	/bin/bash /root/install.sh "${APPNAME}" "${RELEASETAG}" "${TARGETARCH}"
